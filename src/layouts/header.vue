@@ -89,6 +89,9 @@
       </div>
     </div>
   </header>
+  <nav class="flex gap p-2 bg-slate-300 w-full">
+    <router-link to="/store" activeClass="border-2 text-teal-600 border-teal-600" class="text-xs font-bold uppercase tracking-wider px-4 py-2 rounded-md">store</router-link>
+  </nav>
 </template>
 
 <style scoped>
