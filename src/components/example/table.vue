@@ -5,7 +5,7 @@ import SimpleModal from "@/components/templates/simple-modal.vue";
 import FilePen from "@/components/icons/file-pen.vue";
 import axios from "axios";
 export default {
-  components: {SimpleModal},
+  components: {SimpleModal,FilePen,TrashBin},
   data(){
     return {
       isActive: false,
@@ -25,12 +25,17 @@ export default {
     loadData(){
       axios
           .get("http://127.0.0.1:5000/example")
-          .then((res)=>{ this.examples = res.data;console.log('res',res.data) });
+          .then((res)=>{ this.examples = res.data; });
     },
     submit(){
       axios
           .post("http://127.0.0.1:5000/example", this.example)
         .then((res)=>{ this.loadData() });
+    },
+    destroyOne(id){
+      axios
+          .delete(`http://127.0.0.1:5000/example/${id}`)
+          .then((res)=>{ this.loadData() });
     }
   }
 }
@@ -41,11 +46,12 @@ export default {
     <thead>
     <tr class="bg-slate-100 text-xs font-semibold">
       <td scope="col" class="px-4 py-2 border text-md font-bold text-neutral-700">Name</td>
+      <td scope="col" class="px-4 py-2 border text-md font-bold text-neutral-700">Secret Key</td>
       <td scope="col" class="px-4 py-2 border text-md font-bold text-neutral-700">Age</td>
       <td scope="col" class="px-4 py-2 border text-md font-bold text-neutral-700">Female</td>
       <td scope="col" class="px-4 py-2 border text-md font-bold text-neutral-700">Dob</td>
-      <td scope="col" class="px-4 py-2 border text-md font-bold text-neutral-700">First Create</td>
-      <td scope="col" class="px-4 py-2 border text-md font-bold text-neutral-700">Last Update</td>
+<!--      <td scope="col" class="px-4 py-2 border text-md font-bold text-neutral-700">First Create</td>-->
+<!--      <td scope="col" class="px-4 py-2 border text-md font-bold text-neutral-700">Last Update</td>-->
       <td scope="col" class="px-4 py-2 border">
         <div class="flex w-full justify-evenly">
           <SimpleModal>
@@ -122,17 +128,18 @@ export default {
     </tr>
     </thead>
     <tbody>
-    <tr class="bg-slate-100 text-xs font-normal" v-for="(example, index) in examples" :key="example._id">
+    <tr class="bg-slate-50 text-xs font-normal" v-for="(example, index) in examples" :key="example._id">
       <td class="px-4 py-2 border text-md text-neutral-700"><span v-text="example.name"></span></td>
+      <td class="px-4 py-2 border text-md text-neutral-700"><span v-text="example._id"></span></td>
       <td class="px-4 py-2 border text-md text-neutral-700"><span v-text="example.age"></span></td>
       <td class="px-4 py-2 border text-md text-neutral-700"><span v-text="example.is_female"></span></td>
       <td class="px-4 py-2 border text-md text-neutral-700"><span v-text="example.date_of_birth"></span></td>
-      <td class="px-4 py-2 border text-md text-neutral-700"><span v-text="example.createdAt"></span></td>
-      <td class="px-4 py-2 border text-md text-neutral-700"><span v-text="example.updatedAt"></span></td>
+<!--      <td class="px-4 py-2 border text-md text-neutral-700"><span v-text="example.createdAt"></span></td>-->
+<!--      <td class="px-4 py-2 border text-md text-neutral-700"><span v-text="example.updatedAt"></span></td>-->
       <td class="px-4 py-2 border text-md text-neutral-700">
         <div class="w-full flex justify-center gap-3">
           <router-link :to="`/example/${example._id}/action`"><FilePen :className="' text-sky-700 hover:text-white hover:bg-sky-700 p-0.5 rounded-md'" /></router-link>
-          <button><TrashBin :className="' text-rose-700 hover:text-white hover:bg-rose-700 p-0.5 rounded-md'" /></button>
+          <button @click="destroyOne(example._id)"><TrashBin :className="' text-rose-700 hover:text-white hover:bg-rose-700 p-0.5 rounded-md'" /></button>
         </div>
       </td>
     </tr>
