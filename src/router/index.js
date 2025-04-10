@@ -65,7 +65,13 @@ const routes = [
     },
     { path: '/photograph', component: import('../components/photograph/index.vue') },
     { path: '/dashboard', component: import('../components/dashboard/index.vue') },
-    { path: '/product', component: import('../components/product/index.vue') },
+    {
+        path: '/product',
+        component: import('../components/product/index.vue'),
+        children: [
+            { path: '', component: import('../components/product/list.vue') },
+        ]
+    },
     {
         path: '/category',
         component: import('../components/category/index.vue'),
@@ -79,6 +85,7 @@ const routes = [
     { path: '/customer', component: import('../components/customer/index.vue') },
     { path: '/coupon', component: import('../components/coupon/index.vue') },
     { path: '/setting', component: import('../components/setting/index.vue') },
+    { path: '/qr-code', component: import('../components/qr-code/generator.vue') },
 ]
 
 const router = createRouter({
