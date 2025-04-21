@@ -87,7 +87,15 @@ const routes = [
     { path: '/customer', component: import('../components/customer/index.vue') },
     { path: '/coupon', component: import('../components/coupon/index.vue') },
     { path: '/setting', component: import('../components/setting/index.vue') },
-    { path: '/qr-code', component: import('../components/qr-code.generator.vue') },
+    {
+        path: '/qr-code',
+        component: import('../components/qr-code/index.vue'),
+        children: [
+            { path: '', redirect: '/qr-code/list' },
+            { path: 'list', component: import('../components/qr-code/list.vue') },
+            { path: 'view', component: import('../components/qr-code/view.vue') },
+        ]
+    },
 ]
 
 const router = createRouter({
