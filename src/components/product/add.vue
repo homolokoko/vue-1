@@ -1,13 +1,22 @@
 <script>
 import Input from "@/components/forms/input.vue";
 import Select from "@/components/forms/select.vue";
+import FileUpload from "@/components/forms/file-upload.vue";
 import InputPassword from "@/components/forms/input-password.vue";
+import MultiFileUpload from "@/components/forms/multi-file-upload.vue";
 
   export default {
-    components: {Input,Select,InputPassword},
+    components: {
+      Input,
+      Select,
+      FileUpload,
+      InputPassword,
+      MultiFileUpload,
+    },
     data() {
       return {
         filter:{
+          files:[],
           sewing:'',
           staff_name:'',
           new_password:'',
@@ -26,6 +35,10 @@ import InputPassword from "@/components/forms/input-password.vue";
     <div class="p-10">
       <div class="p-5 rounded-lg bg-white">
         <div class="flex flex-col gap-4">
+          <div class="block">
+            <label for="staff_name" class="text-sm">Image</label>
+            <div class="p-3"><MultiFileUpload /></div>
+          </div>
           <div class="block">
             <label for="staff_name" class="text-sm">Staff Name</label>
             <div class="p-3"><Input :value="filter.staff_name" /></div>

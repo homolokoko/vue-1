@@ -18,7 +18,7 @@ export default {
     async initialPage(){
 
       await axios
-          .get(`http://localhost/api/generate-code`)
+          .get(`http://localhost/api/qr-code`)
           .then((response)=>{
               _.map(response.data.data, async (obj)=>{
                  await QRCode.toDataURL(obj.ticketID)
