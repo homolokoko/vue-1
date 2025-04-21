@@ -48,11 +48,11 @@ export default {
         <div class="flex flex-col gap-4">
           <div class="block">
             <label for="staff_name" class="text-sm">Staff Name</label>
-            <div class="p-3"><Input :value="filter.staff_name" /></div>
+            <div class="p-3"><Input v-model="filter.staff_name" /></div>
           </div>
           <div class="block">
             <label for="confirm_password" class="text-sm">New Password</label>
-            <div class="p-3"><InputPassword :value="filter.new_password" /></div>
+            <div class="p-3"><InputPassword v-model="filter.new_password" /></div>
           </div>
           <div class="block">
             <label for="confirm_password" class="text-sm">Confirm Password</label>
