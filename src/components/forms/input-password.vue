@@ -1,22 +1,29 @@
 <script>
 export default {
   name: 'InputPassword',
-  props: {
-    value:'',
-  },
   data() {
     return {
       show:false,
       value:'',
     }
   },
+  computed: {
+    localValue:{
+      get(){
+        return this.value;
+      },
+      set(val){
+        this.value = val;
+      },
+    }
+  }
 }
 
 </script>
 
 <template>
     <div class="relative">
-      <input v-model="value" :type="show ? 'text':'password'" id="new_password" class="px-4 py-3 bg-gray-200 bg-opacity-25 duration-200 rounded-t-md border-b-2 border-blue-400 focus:border-blue-600 w-full shadow-md focus:bg-gray-300 focus:outline-none">
+      <input v-model="localValue" :type="show ? 'text':'password'" id="new_password" class="px-4 py-3 bg-gray-200 bg-opacity-25 duration-200 rounded-t-md border-b-2 border-blue-400 focus:border-blue-600 w-full shadow-md focus:bg-gray-300 focus:outline-none">
       <button @click="show=!show" class="absolute top-4 right-2 ">
         <svg v-if="!show" class="w-5 h-5 text-gray-800 rounded-full" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
           <path d="m4 15.6 3.055-3.056A4.913 4.913 0 0 1 7 12.012a5.006 5.006 0 0 1 5-5c.178.009.356.027.532.054l1.744-1.744A8.973 8.973 0 0 0 12 5.012c-5.388 0-10 5.336-10 7A6.49 6.49 0 0 0 4 15.6Z"/>

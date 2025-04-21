@@ -83,14 +83,14 @@ export default {
 </script>
 
 <template>
-  <div class="grid grid-cols-10 gap-3">
+  <div class="grid grid-cols-5 gap-3">
     <div
         v-for="(item, index) in list.data"
-        class="border flex flex-col">
-      <div class="px-4 py-2 text-xs"><span v-text="item.ticketID"></span></div>
+        class="border flex flex-col divide-y">
+      <div class="px-4 py-2 text-xs bg-slate-100"><span v-text="item.ticketID"></span></div>
       <img :src="item.imgUrl" alt="">
     </div>
-    <div class="col-span-10"><button @click="download()" class="w-full px-4 py-2 bg-teal-500 text-white">download</button></div>
+    <div class="col-span-5"><button @click="download()" class="w-full px-4 py-2 bg-teal-500 text-white">download</button></div>
   </div>
   <div v-if="Object.keys(list).length > 0" class="flex divide-x text-xs font-semibold">
     <button
