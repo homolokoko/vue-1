@@ -25,7 +25,7 @@ export default {
       <div class="flex justify-between"><span v-text="item.name"></span><span>release date</span></div>
       <div class="flex justify-between">
         <div class="flex gap-3"><span :class="item.is_published ? 'bg-green-500':'border'" class="w-5 h-5 rounded-full"></span><span>Published</span></div>
-        <button class="bg-indigo-500 text-white text-xs uppercase tracking-wider font-semibold px-4 py-1 rounded-md">Detail</button>
+        <router-link :to="`product/${i}`" class="bg-indigo-500 text-white text-xs uppercase tracking-wider font-semibold px-4 py-1 rounded-md">Detail</router-link>
       </div>
     </div>
   </div>

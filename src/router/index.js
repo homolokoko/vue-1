@@ -70,6 +70,8 @@ const routes = [
         component: import('../components/product/index.vue'),
         children: [
             { path: '', component: import('../components/product/list.vue') },
+            { path: ':id', component: import('../components/product/detail.vue') },
+            { path: 'create', component: import('../components/product/add.vue') },
         ]
     },
     {
@@ -85,7 +87,7 @@ const routes = [
     { path: '/customer', component: import('../components/customer/index.vue') },
     { path: '/coupon', component: import('../components/coupon/index.vue') },
     { path: '/setting', component: import('../components/setting/index.vue') },
-    { path: '/qr-code', component: import('../components/qr-code/generator.vue') },
+    { path: '/qr-code', component: import('../components/qr-code.generator.vue') },
 ]
 
 const router = createRouter({
