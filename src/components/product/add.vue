@@ -4,9 +4,11 @@ import Select from "@/components/forms/select.vue";
 import FileUpload from "@/components/forms/file-upload.vue";
 import InputPassword from "@/components/forms/input-password.vue";
 import MultiFileUpload from "@/components/forms/multi-file-upload.vue";
+import Flatpickr from "@/components/forms/flat-picker.vue";
 
   export default {
     components: {
+      Flatpickr,
       Input,
       Select,
       FileUpload,
@@ -17,14 +19,16 @@ import MultiFileUpload from "@/components/forms/multi-file-upload.vue";
       return {
         filter:{
           files:[],
-          sewing:'',
-          staff_name:'',
-          new_password:'',
-          confirm_password:'',
-          selected_roles:[]
+          name:'',
+          release_date:'',
         },
         sewingList:[],
 
+      }
+    },
+    methods: {
+      submit(){
+        console.log('filter', this.filter)
       }
     }
   }
@@ -36,35 +40,18 @@ import MultiFileUpload from "@/components/forms/multi-file-upload.vue";
       <div class="p-5 rounded-lg bg-white">
         <div class="flex flex-col gap-4">
           <div class="block">
-            <label for="staff_name" class="text-sm">Image</label>
-            <div class="p-3"><MultiFileUpload /></div>
+            <label for="staff_name" class="text-sm">Name</label>
+            <div class="p-3"><Input @update-value="filter.name=$event" /></div>
           </div>
           <div class="block">
-            <label for="staff_name" class="text-sm">Staff Name</label>
-            <div class="p-3"><Input :value="filter.staff_name" /></div>
+            <label for="staff_name" class="text-sm">Release Date</label>
+            <div class="p-3"><Flatpickr @update-value="filter.release_date" /></div>
           </div>
           <div class="block">
-            <label for="confirm_password" class="text-sm">New Password</label>
-            <div class="p-3"><InputPassword :value="filter.new_password" /></div>
+            <label for="staff_name" class="text-sm">Photos</label>
+            <div class="p-3"><MultiFileUpload @update-value="filter.files=$event" /></div>
           </div>
-          <div class="block">
-            <label for="confirm_password" class="text-sm">Confirm Password</label>
-            <div class="p-3"><InputPassword :value="filter.confirm_password" /></div>
-          </div>
-          <div class="block">
-            <label for="Role" class="text-sm">Role</label>
-            <div class="p-3">
-              <select v-model="filter.selected_roles" type="select" id="Role" class="px-4 py-3 bg-gray-200 bg-opacity-25 duration-200 rounded-t-md border-b-2 border-blue-400 focus:border-blue-600 w-full shadow-md focus:bg-gray-300 focus:outline-none">
-                <option value="" selected>please choose</option>
-                <option v-for="(role, i) in roles" :key="role.value" :value="role.value" :text="role.text"></option>
-              </select>
-            </div>
-          </div>
-          <div class="block">
-            <label for="sewing" class="text-sm">Sewing</label>
-            <div class="p-3"><Select v-model="filter.sewing" :list="sewingList" /></div>
-          </div>
-          <div class="block flex justify-end items-end p-2">
+          <div class="flex justify-end items-end p-2">
             <button @click="submit()" class="px-4 py-2 rounded bg-indigo-500 text-xs font-semibold text-white tracking-wider">Save</button>
           </div>
         </div>

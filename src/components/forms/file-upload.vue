@@ -1,5 +1,5 @@
 <script>
-
+import FileToBase64 from "@/assets/scripts.js";
 export default {
     name: 'FileUpload',
     props: {
@@ -14,6 +14,8 @@ export default {
     methods: {
       async uploaded(e){
         const src = e.target.files[0];
+        FileToBase64.fileToBase(src)
+            .then((result)=>{ this.$emit('update-value',result); });
       }
     }
   }

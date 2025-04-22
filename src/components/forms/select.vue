@@ -16,7 +16,7 @@ export default {
   },
   methods: {
     selectedValue(e){
-      this.$emit('select-emit-value', e.target.value);
+      this.$emit('update-value', e.target.value);
     }
   }
 }

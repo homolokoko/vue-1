@@ -4,19 +4,9 @@ export default {
   props: {
     value: ""
   },
-  data() {
-    return {
-      value: "",
-    }
-  },
-  computed: {
-    localValue:{
-      get(){
-        return this.value;
-      },
-      set(val){
-        this.value = val;
-      },
+  methods: {
+    updateVal(e){
+      this.$emit('update-value', e.target.value);
     }
   }
 }
@@ -24,7 +14,7 @@ export default {
 </script>
 
 <template>
-  <input v-model="localValue" type="text" id="staff_name" class="px-4 py-3 bg-gray-200 bg-opacity-25 duration-200 rounded-t-md border-b-2 border-blue-400 focus:border-blue-600 w-full shadow-md focus:bg-gray-300 focus:outline-none">
+  <input @input="updateVal" type="text" class="px-4 py-3 bg-gray-200 bg-opacity-25 duration-200 rounded-t-md border-b-2 border-blue-400 focus:border-blue-600 w-full shadow-md focus:bg-gray-300 focus:outline-none">
 </template>
 
 <style scoped>

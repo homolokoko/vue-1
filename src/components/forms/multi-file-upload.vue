@@ -15,10 +15,12 @@
           FileToBase64.fileToBase(file)
               .then((result)=>{ this.images.push(result); });
         })
+        this.$emit('update-value', this.images);
       },
       remove(index){
         _.pullAt(this.images, index);
-      }
+        this.$emit('update-value', this.images);
+      },
     }
   }
 </script>
